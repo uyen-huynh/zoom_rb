@@ -19,6 +19,11 @@ module Zoom
         permit: RECORDING_SETTINGS_KEYS
 
       delete 'meeting_recording_file_delete', '/meetings/:meeting_id/recordings/:recording_id'
+
+      delete 'meeting_recordings_delete', '/meetings/:meeting_id/recordings'
+
+      put 'meeting_recordings_recover', '/meetings/:meeting_id/recordings/status',
+        require: :action
     end
   end
 end
