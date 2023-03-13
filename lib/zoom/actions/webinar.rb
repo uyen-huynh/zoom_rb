@@ -20,7 +20,7 @@ module Zoom
                           authentication_domains registrants_confirmation_email
                         ],
                         {
-                            language_interpretation: [
+                          language_interpretation: [
                             :enable,
                             interpreters: %i[email languages]
                           ],
