@@ -100,6 +100,7 @@ GEM
       simplecov-html (~> 0.11)
       simplecov_json_formatter (~> 0.1)
     simplecov-html (0.12.3)
+    simplecov-lcov (0.8.0)
     simplecov_json_formatter (0.1.4)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
@@ -117,7 +118,8 @@ DEPENDENCIES
   pry-byebug
   rspec (>= 3.8)
   rspec_junit_formatter (>= 0.4.1)
-  simplecov (>= 0.16.1)
+  simplecov (>= 0.22.0)
+  simplecov-lcov (>= 0.8.0)
   webmock (>= 3.4)
   zoom_rb!
 
