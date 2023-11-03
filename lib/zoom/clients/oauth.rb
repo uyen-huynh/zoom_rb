@@ -13,7 +13,10 @@ module Zoom
       # Returns (access_token, refresh_token)
       #
       def initialize(config)
-        Zoom::Params.new(config).permit( %i[auth_token auth_code redirect_uri access_token refresh_token timeout code_verifier])
+        Zoom::Params.new(config).permit( %i[
+          auth_token auth_code redirect_uri access_token refresh_token timeout code_verifier
+          client_id client_secret
+        ])
         Zoom::Params.new(config).require_one_of(%i[access_token refresh_token auth_code])
         if (config.keys & [:auth_code, :redirect_uri]).any?
           Zoom::Params.new(config).require( %i[auth_code redirect_uri])
@@ -49,6 +52,12 @@ module Zoom
         response = revoke_tokens(access_token: @access_token)
         set_tokens(response)
         response
+      end
+
+      def auth_token
+        return Base64.urlsafe_encode64("#{@client_id}:#{@client_secret}") if @client_id && @client_secret
+
+        Base64.urlsafe_encode64("#{Zoom.configuration.api_key}:#{Zoom.configuration.api_secret}")
       end
 
       private
